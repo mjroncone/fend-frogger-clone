@@ -36,6 +36,7 @@ That's it! Enjoy!
 
 Note: Updates will be made to the game periodically, adding new features, styles,
 and/or fixing any bugs that are discovered.
+
 ===============================
 
 Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
