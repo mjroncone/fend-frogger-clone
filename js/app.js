@@ -28,7 +28,7 @@ Enemy.prototype.update = function(dt) {
       delete this.locX;
       delete this.locY;
       delete this.speed;
-   };
+   }
    // Collision detection system. If Bug detects player close by, it resets
    // the player's location.
    if (Math.abs(player.locX - this.locX) < 50 && Math.abs(player.locY - this.locY) < 10){
@@ -36,7 +36,7 @@ Enemy.prototype.update = function(dt) {
       player.locY = player.startY;
       player.score -= 50;
       tokenSpawn();
-   };
+   }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -92,16 +92,16 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(input) {
    if (input === 'left' && this.locX > 1) {
       this.locX -= 101;
-   };
+   }
    if (input === 'up' && this.locY > 1) {
       this.locY -= 83;
-   };
+   }
    if (input === 'right' && this.locX < 404) {
       this.locX += 101;
-   };
+   }
    if (input === 'down' && this.locY < 381) {
       this.locY += 83;
-   };
+   }
 };
 
 // Creates Token class, which will hold all of our score-increasing collectibles
@@ -130,16 +130,12 @@ Token.prototype.update = function() {
       delete this.locY;
       delete this.location;
       player.score += 50;
-   };
+   }
 };
 
 Token.prototype.render = function() {
    ctx.drawImage(Resources.get(this.sprite), this.locX, this.locY);
 };
-
-Token.prototype.spawn = function() {
-
-}
 
 
 
@@ -149,7 +145,7 @@ Token.prototype.spawn = function() {
 var allEnemies = [];
 for (var i = 0; i < 5; i++) {
       allEnemies[i] = new Enemy();
-};
+}
 
 // Declares global variable allTokens then instantiates them all via the
 // tokenSpawn function which can be called on resets.
@@ -158,7 +154,7 @@ var tokenSpawn = function() {
    allTokens = [];
    for (var i = 0; i < 3; i++) {
       allTokens[i] = new Token();
-   };
+   }
 };
 tokenSpawn();
 var player = new Player();
