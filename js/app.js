@@ -9,7 +9,7 @@ var Enemy = function() {
     this.locX = -100;
     var locYOptions = [55 , 137 , 220];
     this.locY = locYOptions[Math.floor(Math.random() * 3)];
-    this.speed = Math.floor(Math.random() * 600) + 100;
+    this.speed = Math.random() * 600 + 100;
 
 };
 
@@ -22,7 +22,13 @@ Enemy.prototype.update = function(dt) {
     this.locX += this.speed * dt;
     if (this.locX > 550) {
       allEnemies.push(new Enemy());
-      delete this.locX, this.locY, this.speed;
+      delete this.locX;
+      delete this.locY;
+      delete this.speed;
+   };
+   if (Math.abs(player.locX - this.locX) < 50 && Math.abs(player.locY - this.locY) < 10){
+      player.locX = player.startX;
+      player.locY = player.startY;
    };
 };
 
@@ -36,30 +42,47 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 var Player = function() {
    this.sprite = 'images/char-boy.png';
-   this.locX = 202.5;
-   this.locY = 382;
+   this.startX = 202.5;
+   this.startY = 382;
+   this.locX = this.startX;
+   this.locY = this.startY;
+   this.score = 0;
 };
 
 Player.prototype.update = function() {
    this.locX = this.locX;
    this.locY = this.locY;
+   if (this.locY < 0) {
+      this.locX = this.startX;
+      this.locY = this.startY;
+      this.score += 100;
+   }
 };
 
 Player.prototype.render = function() {
    ctx.drawImage(Resources.get(this.sprite), this.locX, this.locY);
+
+   ctx.font = '30pt Impact';
+   ctx.textAlign = 'center';
+   ctx.strokeStyle = 'black';
+   ctx.lineWidth = 3;
+   ctx.fillStyle = 'yellow';
+
+   ctx.fillText("Score: " + this.score, 400, 100);
+   ctx.strokeText("Score: " + this.score, 400, 100);
 };
 
 Player.prototype.handleInput = function(input) {
-   if (input === 'left') {
+   if (input === 'left' && this.locX > 1) {
       this.locX -= 101;
    };
-   if (input === 'up') {
+   if (input === 'up' && this.locY > 1) {
       this.locY -= 83;
    };
-   if (input === 'right') {
+   if (input === 'right' && this.locX < 404) {
       this.locX += 101;
    };
-   if (input === 'down') {
+   if (input === 'down' && this.locY < 381) {
       this.locY += 83;
    };
 };
@@ -71,7 +94,7 @@ Player.prototype.handleInput = function(input) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [];
-for (var i = 0; i < 4; i++) {
+for (var i = 0; i < 5; i++) {
       allEnemies[i] = new Enemy();
 };
 
