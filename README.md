@@ -27,10 +27,10 @@ re-spawn each time the player resets to home.
 
 Controls:
 
-"Up": pressing the up arrow will move the character up one space.
-"Right": pressing the right arrow will move the character right one space.
-"Down": pressing the down arrow will move the character down one space.
-"Left": pressing the left arrow will move the character left one space.
+- "Up": pressing the up arrow will move the character up one space.
+- "Right": pressing the right arrow will move the character right one space.
+- "Down": pressing the down arrow will move the character down one space.
+- "Left": pressing the left arrow will move the character left one space.
 
 That's it! Enjoy!
 
